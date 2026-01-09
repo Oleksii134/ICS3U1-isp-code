@@ -11,16 +11,16 @@ public class Hangman {
         String word = "example";
 
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);//importing scanner so user can write stuff in
        
         int wrongGuesses = 0;
-        ArrayList<Character> wordState = new ArrayList<>();
-        for(int i = 0; i <word.length(); i++) {
+        ArrayList<Character> wordState = new ArrayList<>();//creating array list for how many characters are in the word
+        for(int i = 0; i <word.length(); i++) {//creating for statement for _ symbol for each letter of the word
            wordState.add('_');
            System.out.print(wordState.get(i));
         }
-        System.out.println(" ");
-        System.out.println("#########################");
+        System.out.println(" ");//skipping a line so it looks better
+        System.out.println("#########################");//welcome message
         System.out.println("Welcome to Java Hangman!");
         System.out.println("#########################");
        
@@ -35,7 +35,7 @@ public class Hangman {
 
 
         System.out.println("Guess a letter:");
-        char guess = scanner.next().toLowerCase().charAt(0);
+        char guess = scanner.next().toLowerCase().charAt(0);//acceptig input from a user and making it lower case so its either to recognise for the program
      
 
 
@@ -55,7 +55,7 @@ public class Hangman {
         }
         scanner.close();
     }
-    static String getHandmanArt(int wrongGuesses) {
+    static String getHandmanArt(int wrongGuesses) {//creating a Handman ASCII art
        return switch(wrongGuesses){
 case 0 -> """
        
