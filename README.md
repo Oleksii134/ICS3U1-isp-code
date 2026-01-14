@@ -19,6 +19,9 @@ public class Hangman {
         System.out.println("#########################");
         System.out.println("Welcome to Java Hangman!");
         System.out.println("#########################");
+
+        while(wrongGuesses < 6){//the program works until the amount of wrong guesses is less than 6
+         System.out.println(getHandmanArt(wrongGuesses));//calling the method to get the hangman
        
         System.out.println("Word:");
 
@@ -44,28 +47,31 @@ public class Hangman {
                  wordState.set(i, guess);//if the guess is right it sets the guessed letter in the arraylist
               }
            }
+
+           if(!wordState.contains('_')){//if word state does not has any underscores then you win
+              System.out.println("You Win! You've guessed the word: " + word);
+              break;//breaking the loop if you win
+
+           }
         }
         else {
            wrongGuesses++;//if there is a wrong guess the amount of wrong guesses increases by 1
            System.out.println("Wrong guess! Total wrong guesses: " + wrongGuesses);//shows the amount of wrong guesses
         }
+        if(wrongGuesses >= 6){
+         System.out.println(getHandmanArt(wrongGuesses));
+         System.out.println("Game Over! The word was: " + word);//if you messed up more than 6 times you lose
+        }
+      }
         scanner.close();
     }
     static String getHandmanArt(int wrongGuesses) { //creating a method to get the hangman art if a guess is wrong
        return switch(wrongGuesses){//Ascii art for hangman 
 case 0 -> """
-       
-
-
-
-
-
 
         """;
 case 1 -> """
         O
-   
-
 
         """;
 case 2 -> """
@@ -80,18 +86,18 @@ case 3 -> """
         """;
         case 4 -> """
         0
-       /|\
+       /|\\
        
         """;
          case 5 -> """
         0
-       /|\
+       /|\\
        /
         """;
          case 6 -> """
         0
-       /|\
-       / \
+       /|\\
+       / \\
         """;
         default -> "";
        };
